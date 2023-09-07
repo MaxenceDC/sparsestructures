@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "sparsestructures",
+  "version": "${version}",
+
+  "name": "Sparse Structures",
+  "description": "Makes all structures more spread out.",
+  "authors": [
+    "MaxenceDC (ign: EulerIdentity)"
+  ],
+  "contact": {
+    "website": "https://maxencedc.github.io",
+    "repo": "https://github.com/maxencedc/sparsestructures",
+    "homepage": "https://modrinth.com/mod/sparsestructures",
+    "issues": "https://github.com/maxencedc/sparsestructures/issues",
+    "sources": "https://github.com/maxencedc/sparsestructures"
+  },
+
+  "license": "MIT",
+  "icon": "assets/sparsestructures/icon.png",
+  "environment": "*",
+
+  "mixins": [
+    "sparsestructures.mixins.json"
+  ],
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "https://modrinth.com/mod/sparsestructures"
+      }
+    }
+  }
+}
