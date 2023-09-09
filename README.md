@@ -1,14 +1,14 @@
-# <img src="src/main/resources/assets/sparsestructures/icon.png" width="128" title="Sparse Structs Icon" style="vertical-align: middle"> Sparse Structures
+# <img src="media/icon.png" width="128" title="Sparse Structs Icon" style="vertical-align: middle"> Sparse Structures
 A simple one mixin mod that makes all (even datapacks and modded) structures more spread out, essentially making them rarer to find. Useful in big modpacks with a lot of structures mod to encourage exploration and make the experience more challenging.
 
 > Notice: this does not alter the generation of ores/geodes or other features of this kind, and alters very slightly the terrain and trees (not enough to be an issue to most players).
 
 ## Examples
-![Comparison between two world on the same seed, the one on the left showing a witch hut and a mansion (without the mod), the one on the right showing the same terrain but without those structures](https://cdn-raw.modrinth.com/data/qwvI41y9/images/be9e463926fb59e8314ba24c69d173ab4d636278.png)
+![Comparison between two world on the same seed, the one on the left showing a witch hut and a mansion (without the mod), the one on the right showing the same terrain but without those structures](media/example1.png)
 
 ### In a modded environment:
-![First screenshot of the comparison, showing many (maybe too many) structures at once in the ocean because of the quantity of structure mods installed.](https://cdn-raw.modrinth.com/data/qwvI41y9/images/ae9d2621f1f12bf208a7af27738e6a9113e3de45.png)
-![Second screenshot of the comparison, showing lot less structures in the same world (seed), at the same coordinates.](https://cdn.modrinth.com/data/qwvI41y9/images/78f2018c9beb7c9e5992b0c246313ff7c7228e03.png)
+![First screenshot of the comparison, showing many (maybe too many) structures at once in the ocean because of the quantity of structure mods installed.](media/example2_1.png)
+![Second screenshot of the comparison, showing lot less structures in the same world (seed), at the same coordinates.](media/example2_2.png)
 <details><summary>Structure Mods in the picture :</summary>
 Tidal towns, Explorify, all Yung's mods, Just Another Structure Pack, MVS, Explorations, Towns and Towers, Dungeons and Taverns...
 </details>
