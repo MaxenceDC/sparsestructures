@@ -33,7 +33,7 @@ This mod doesn't have any (not even fabric-api).
 * *~~Add an option to blacklist mods/structures.~~*
 * *~~Add an option to change the spread factor.~~*
 
-<details><summary>How it worked on version 1.x of the mod (it's similar for 2.x but you can see the code on GitHub)</summary>
+## How it worked for version 1.x of the mod (it's similar for 2.x but you can see the code on GitHub)
 
 Minecraft world generation for structures uses two parameters (among others) that tells how structure should be spread out in the world : `separation` and `spacing`. Separation tells what should be the minimum distance between two of the same structures, and spacing tells what should be the maximum distance. All this mod does is double those values when a structure is initialized.
 
@@ -51,7 +51,6 @@ public class SparseStructures {
     }
 }
 ```
-</details>
 
 ## Credits
 Icon made with [Gimp](https://www.gimp.org/) using [Twemoji](https://github.com/twitter/twemoji) and [FiraCode](https://github.com/tonsky/FiraCode)
