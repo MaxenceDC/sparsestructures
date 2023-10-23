@@ -1,4 +1,4 @@
-# <img src="media/icon.png" title="Sparse Structs Icon" width="128"/> Sparse Structures
+# <img src="media/icon_small.png" width="128" title="Sparse Structs Icon" style="vertical-align: middle"> Sparse Structures
 A simple and configurable one-mixin mod that makes all (even datapacks and modded) structures more spread out (or more common!), essentially making them rarer/easier to find. Useful in big modpacks with a lot of structures mod to encourage exploration and make the experience more challenging or balanced.
 
 > Notice: this does not alter the generation of ores/geodes or other features of this kind, and alters very slightly the terrain and trees (not enough to be an issue to most players).
