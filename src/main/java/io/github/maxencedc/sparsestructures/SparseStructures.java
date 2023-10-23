@@ -1,27 +1,32 @@
 package io.github.maxencedc.sparsestructures;
 
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.gen.chunk.placement.RandomSpreadStructurePlacement;
-import net.minecraft.world.gen.chunk.placement.SpreadType;
-import net.minecraft.world.gen.chunk.placement.StructurePlacement;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.fabricmc.api.ModInitializer;
 
-import java.util.Optional;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
-@Mixin(RandomSpreadStructurePlacement.class)
-public class SparseStructures {
-    @Mutable @Shadow @Final private int separation;
-    @Mutable @Shadow @Final private int spacing;
+public class SparseStructures implements ModInitializer {
+    private static final String CONFIG_RESOURCE_NAME = "default-config.json5";
+    private static final String CONFIG_FILENAME = "sparsestructures.json5";
+    private static final Path CONFIG_FILE_PATH = Paths.get("config", CONFIG_FILENAME);
+    public static SparseStructuresConfig config;
 
-    @Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/world/gen/chunk/placement/StructurePlacement$FrequencyReductionMethod;FILjava/util/Optional;IILnet/minecraft/world/gen/chunk/placement/SpreadType;)V")
-    public void RandomSpreadStructurePlacement(Vec3i locateOffset, StructurePlacement.FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional exclusionZone, int spacing, int separation, SpreadType spreadType, CallbackInfo ci) {
-        this.separation *= 2;
-        this.spacing *= 2;
+    public void onInitialize() {
+        if (!CONFIG_FILE_PATH.toFile().exists()) {
+            try (InputStream in = this.getClass().getClassLoader().getResourceAsStream(CONFIG_RESOURCE_NAME)) {
+                if (in == null) throw new IllegalStateException("Failed to load SparseStructure's default config \"" + CONFIG_RESOURCE_NAME +"\"");
+                java.nio.file.Files.createDirectories(CONFIG_FILE_PATH);
+                java.nio.file.Files.copy(in, CONFIG_FILE_PATH, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try (final InputStream in = java.nio.file.Files.newInputStream(CONFIG_FILE_PATH)) {
+            config = new com.google.gson.Gson().fromJson(new java.io.InputStreamReader(in), SparseStructuresConfig.class);
+        } catch (Exception e) {
+            throw new RuntimeException("SparseStructure's config file is malformed! If you don't know what's causing this, delete the config file and restart the game.");
+        }
     }
 }

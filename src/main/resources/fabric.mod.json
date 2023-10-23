@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Sparse Structures",
-  "description": "Makes all structures more spread out.",
+  "description": "Makes all structures more spread out. Now configurable.",
   "authors": [
     "MaxenceDC (ign: EulerIdentity)"
   ],
@@ -20,6 +20,9 @@
   "icon": "assets/sparsestructures/icon.png",
   "environment": "*",
 
+  "entrypoints": {
+    "main": ["io.github.maxencedc.sparsestructures.SparseStructures"]
+  },
   "mixins": [
     "sparsestructures.mixins.json"
   ],
@@ -30,5 +33,9 @@
         "modmenu.modrinth": "https://modrinth.com/mod/sparsestructures"
       }
     }
+  },
+
+  "depends": {
+    "minecraft": "1.20.x"
   }
 }
