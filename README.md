@@ -16,6 +16,7 @@ Tidal towns, Explorify, all Yung's mods, Just Another Structure Pack, MVS, Explo
 ## Configuration
 The config can be found in the `config` folder of your instance, and is named `sparsestructures.json5`. It contains the following options :
 * `spreadFactor` : the factor by which the separation and spacing of structures should be multiplied. The default value is `2`, which means that structures will be twice as rare. If you want structures to be more common, you can set this value to `0.5` for example.
+  * ⚠️ **Warning** : a very low value (like `0.01`) makes the world generation process considerably slower.
 * `customSpreadFactors` : a list of custom spread factors for specific structures. The default value makes the mansion twice as rare as an example (which has no effects with a global `spreadFactor` of 2). If you want to change the spread factor of a structure, you can add an entry to this list. Each entry is a JSON object with two fields : `name` (the name of the structure) and `spreadFactor` (the spread factor of the structure). Here's an example :
 ```json5
 {
@@ -24,14 +25,15 @@ The config can be found in the `config` folder of your instance, and is named `s
 }
 // More detailed info can be found inside the config file
 ```
+For now (v2.0), you have to restart the game for the config to be reloaded. This behavior may change in the future.
 
 ## Dependencies
 This mod doesn't have any (not even fabric-api).
 
 ## Future Updates
 * *Open an issue on this project's repo if you have any suggestion!*
-* *~~Add an option to blacklist mods/structures.~~*
-* *~~Add an option to change the spread factor.~~*
+* *~~Add an option to blacklist mods/structures.~~* (added in v2.0)
+* *~~Add an option to change the spread factor.~~* (added in v2.0)
 
 ## How it worked for version 1.x of the mod (it's similar for 2.x but you can see the code on GitHub)
 
