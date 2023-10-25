@@ -35,24 +35,5 @@ This mod doesn't have any (not even fabric-api).
 * *~~Add an option to blacklist mods/structures.~~* (added in v2.0)
 * *~~Add an option to change the spread factor.~~* (added in v2.0)
 
-## How it worked for version 1.x of the mod (it's similar for 2.x but you can see the code on GitHub)
-
-Minecraft world generation for structures uses two parameters (among others) that tells how structure should be spread out in the world : `separation` and `spacing`. Separation tells what should be the minimum distance between two of the same structures, and spacing tells what should be the maximum distance. All this mod does is double those values when a structure is initialized.
-
-Here's all this mod's code :
-```java
-@Mixin(RandomSpreadStructurePlacement.class)
-public class SparseStructures {
-    @Mutable @Shadow @Final private int separation;
-    @Mutable @Shadow @Final private int spacing;
-
-    @Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/world/gen/chunk/placement/StructurePlacement$FrequencyReductionMethod;FILjava/util/Optional;IILnet/minecraft/world/gen/chunk/placement/SpreadType;)V")
-    public void RandomSpreadStructurePlacement(Vec3i locateOffset, StructurePlacement.FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional exclusionZone, int spacing, int separation, SpreadType spreadType, CallbackInfo ci) {
-        this.separation *= 2;
-        this.spacing *= 2;
-    }
-}
-```
-
 ## Credits
 Icon made with [Gimp](https://www.gimp.org/) using [Twemoji](https://github.com/twitter/twemoji) and [FiraCode](https://github.com/tonsky/FiraCode)
