@@ -31,6 +31,7 @@ For now (v2.0), you have to restart the game for the config to be reloaded. This
 This mod doesn't have any (not even fabric-api).
 
 ## Future Updates
+* World-specific configs
 * *Open an issue on this project's repo if you have any suggestion!*
 * *~~Add an option to blacklist mods/structures.~~* (added in v2.0)
 * *~~Add an option to change the spread factor.~~* (added in v2.0)

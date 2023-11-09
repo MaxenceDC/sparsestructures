@@ -1,9 +1,15 @@
 package io.github.maxencedc.sparsestructures;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
-public record SparseStructuresConfig(double spreadFactor, List<customSpreadFactors> customSpreadFactors) {
-    public record customSpreadFactors(String structure, double factor) {}
+public class SparseStructuresConfig {
+    public double spreadFactor;
+    public double spreadFactor() { return this.spreadFactor; }
+    public List<CustomSpreadFactors> customSpreadFactors;
+    public List<CustomSpreadFactors> customSpreadFactors() { return this.customSpreadFactors; }
+    public SparseStructuresConfig(double spreadFactor, List<CustomSpreadFactors> customSpreadFactors)
+    {
+        this.spreadFactor = spreadFactor;
+        this.customSpreadFactors = customSpreadFactors;
+    }
 }
