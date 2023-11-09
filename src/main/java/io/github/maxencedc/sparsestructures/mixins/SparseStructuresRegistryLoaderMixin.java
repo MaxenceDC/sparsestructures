@@ -2,6 +2,7 @@ package io.github.maxencedc.sparsestructures.mixins;
 
 import com.google.gson.JsonElement;
 import com.mojang.serialization.Decoder;
+import io.github.maxencedc.sparsestructures.CustomSpreadFactors;
 import io.github.maxencedc.sparsestructures.SparseStructures;
 import io.github.maxencedc.sparsestructures.SparseStructuresConfig;
 import net.minecraft.registry.*;
@@ -30,7 +31,7 @@ public abstract class SparseStructuresRegistryLoaderMixin {
                 if (s == null) return false;
                 String structure_set = registryKey.getValue().toString();
                 return structure_set.equals(s.structure()) || jsonElement.getAsJsonObject().getAsJsonArray("structures").asList().stream().anyMatch(p -> p.getAsJsonObject().get("structure").getAsString().equals(s.structure()));
-            }).findFirst().orElse(new SparseStructuresConfig.customSpreadFactors("", SparseStructures.config.spreadFactor())).factor();
+            }).findFirst().orElse(new CustomSpreadFactors("", SparseStructures.config.spreadFactor())).factor();
             int spacing = (int)(jsonElement.getAsJsonObject().getAsJsonObject("placement").get("spacing").getAsDouble() * factor);
             int separation = (int)(jsonElement.getAsJsonObject().getAsJsonObject("placement").get("separation").getAsDouble() * factor);
             if (separation >= spacing) {
