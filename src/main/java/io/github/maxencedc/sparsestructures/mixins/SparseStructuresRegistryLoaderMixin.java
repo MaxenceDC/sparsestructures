@@ -30,12 +30,19 @@ public abstract class SparseStructuresRegistryLoaderMixin {
                 String structure_set = registryKey.getValue().toString();
                 return structure_set.equals(s.structure()) || jsonElement.getAsJsonObject().getAsJsonArray("structures").asList().stream().anyMatch(p -> p.getAsJsonObject().get("structure").getAsString().equals(s.structure()));
             }).findFirst().orElse(new CustomSpreadFactors("", SparseStructures.config.spreadFactor())).factor();
-            int spacing = (int)(Math.min(jsonElement.getAsJsonObject().getAsJsonObject("placement").get("spacing").getAsDouble() * factor, 4096.0));
-            int separation = (int)(Math.min(jsonElement.getAsJsonObject().getAsJsonObject("placement").get("separation").getAsDouble() * factor, 4096.0));
+
+            int spacing;
+            int separation;
+
+            if (jsonElement.getAsJsonObject().getAsJsonObject("placement").get("spacing") == null) spacing = 1;
+            else spacing = (int)(Math.min(jsonElement.getAsJsonObject().getAsJsonObject("placement").get("spacing").getAsDouble() * factor, 4096.0));
+            if (jsonElement.getAsJsonObject().getAsJsonObject("placement").get("separation") == null) separation = 1;
+            else separation = (int)(Math.min(jsonElement.getAsJsonObject().getAsJsonObject("placement").get("separation").getAsDouble() * factor, 4096.0));
             if (separation >= spacing) {
                 if (spacing == 0) spacing = 1;
                 separation = spacing - 1;
             }
+
             jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", spacing);
             jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", separation);
         }

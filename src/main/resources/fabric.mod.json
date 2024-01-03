@@ -4,9 +4,9 @@
   "version": "${version}",
 
   "name": "Sparse Structures",
-  "description": "Makes all structures more spread out. Now configurable.",
+  "description": "Makes all structures more spread out. Configurable.",
   "authors": [
-    "MaxenceDC (ign: EulerIdentity)"
+    "MaxenceDC (ign: Mythologique)"
   ],
   "contact": {
     "website": "https://maxencedc.github.io",
