@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class SparseStructures implements ModInitializer {
-    private static final String CONFIG_RESOURCE_NAME = "default-config.json5";
+    private static final String CONFIG_RESOURCE_NAME = "sparse-structures-default-config.json5";
     private static final String CONFIG_FILENAME = "sparsestructures.json5";
     private static final Path CONFIG_FILE_PATH = Paths.get("config", CONFIG_FILENAME);
     public static SparseStructuresConfig config;
