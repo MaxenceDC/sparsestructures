@@ -28,11 +28,21 @@ public class DumpStructureSetsCommand {
                     String fileName = new SimpleDateFormat("'structure_sets_dump_'yy_MM_dd_HH_mm'.txt'").format(new Date());
                     try {
                         dumpStructureSets(fileName);
-                        context.getSource().sendSuccess(() -> Component.literal("Structure sets dumped to: `" + Paths.get(Constants.MOD_ID, fileName) + "`\n(if you're on a server, this is dumped in the server's files)"), false);
+                        context.getSource().sendSuccess(() -> {
+                            boolean isDedicatedServer = context.getSource().getServer().isDedicatedServer();
+                            String fileLocation = Paths.get(Constants.MOD_ID, fileName).toString();
+
+                            String message = "Structure sets dumped to: `" + fileLocation + "`";
+                            if (isDedicatedServer) {
+                                message += "\n(you can find the result in the server's files)";
+                            }
+
+                            return Component.literal(message);
+                        }, false);
                         return 1;
                     } catch (IOException e) {
                         context.getSource().sendSuccess(() -> Component.literal("Failed to dump structure sets, check logs for error"), false);
-                        Constants.LOG.error("Failed to dump structure sets", e);
+                        Constants.LOG.error("Failed to dump structure sets\n", e);
                         return 0;
                     }
                 })

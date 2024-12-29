@@ -2,6 +2,7 @@ package io.github.maxencedc.sparsestructures.mixin;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.Decoder;
 import io.github.maxencedc.sparsestructures.CustomSpreadFactors;
 import io.github.maxencedc.sparsestructures.SparseStructuresCommon;
@@ -24,7 +25,7 @@ import java.io.Reader;
 public class MakeStructuresSparse {
 
     @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "loadElementFromResource", locals = LocalCapture.CAPTURE_FAILHARD)
-    private static <E> void loadElementFromResource(WritableRegistry<E> registry, Decoder<E> p_decoder, RegistryOps<JsonElement> ops, ResourceKey<E> resourceKey, Resource resource, RegistrationInfo registrationInfo, CallbackInfo ci, Decoder decoder, Reader reader, JsonElement jsonElement) {
+    private static <E> void loadElementFromResource(WritableRegistry<E> registry, Decoder<E> codec, RegistryOps<JsonElement> ops, ResourceKey<E> resourceKey, Resource resource, RegistrationInfo registrationInfo, CallbackInfo ci, @Local JsonElement jsonElement) {
         String string = registry.key().location().getPath();
         if (!string.equals("worldgen/structure_set")) return;
 
@@ -52,5 +53,4 @@ public class MakeStructuresSparse {
             placement.addProperty("spacing", spacing);
             placement.addProperty("separation", separation);
         }
-    }
-}
+    }}
