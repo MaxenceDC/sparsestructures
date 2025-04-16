@@ -1,0 +1,43 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "website": "https://maxencedc.github.io",
+        "repo": "https://github.com/maxencedc/sparsestructures",
+        "homepage": "https://modrinth.com/mod/sparsestructures",
+        "issues": "https://github.com/maxencedc/sparsestructures/issues",
+        "sources": "https://github.com/maxencedc/sparsestructures"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+          "io.github.maxencedc.sparsestructures.SparseStructuresFabric"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=${java_version}"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.modrinth": "https://modrinth.com/mod/sparsestructures"
+            }
+        }
+    }
+}
+  
