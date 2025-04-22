@@ -21,9 +21,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 @Mixin(RegistryDataLoader.class)
-public class MakeStructuresSparse {
+public class MakeStructuresSparseCommon {
 
-    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "Lnet/minecraft/resources/RegistryDataLoader;loadRegistryContents(Lnet/minecraft/resources/RegistryOps$RegistryInfoLookup;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/WritableRegistry;Lcom/mojang/serialization/Decoder;Ljava/util/Map;)V", locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "loadRegistryContents", locals = LocalCapture.CAPTURE_FAILHARD)
     private static <E> void loadRegistryContents(RegistryOps.RegistryInfoLookup lookup, ResourceManager manager, ResourceKey key, WritableRegistry registry, Decoder decoder, Map exceptions, CallbackInfo ci, String string, FileToIdConverter filetoidconverter, RegistryOps registryops, Iterator var9, Map.Entry entry, ResourceLocation resourcelocation, ResourceKey resourceKey, Resource resource, Reader reader, JsonElement jsonElement) {
         if (!string.equals("worldgen/structure_set")) return;
 
