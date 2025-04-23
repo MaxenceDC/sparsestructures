@@ -53,11 +53,17 @@ Fabric API (if you're using Fabric, or use the Quilt equivalent)
 * World-specific configs
 * Support for structure tags in the config
 * Ability to customize biome constraints for structures
+* Solve the issue with the `/locate` command and disabled structures (1.20.X only)
+* Mutual structure avoidance option
 * *Open an issue on this project's repo if you have any suggestion!*
 * *~~Add a config~~* (added in v2.0)
 * *~~Ban specific structures from generating~~* (added in v3.0)
 * *~~Support for frequency-based structure generation~~* (added in v3.0)
 
+## 🐛 Known Issues
+* Trying to locate a structure that is disabled on versions 1.20.X will freeze the internal server (a restart solves the issue). This does not happen on versions 1.21.X.
+
 ## ©️ Credits
 Icon made with [Gimp](https://www.gimp.org/) using [Twemoji](https://github.com/twitter/twemoji) and [FiraCode](https://github.com/tonsky/FiraCode)
-[Multiloader Template](https://github.com/jaredlll08/MultiLoader-Template) by jaredlll08
+[Multiloader Template](https://github.com/jaredlll08/MultiLoader-Template) by jaredlll08  
+Help with testing from kshrubb
