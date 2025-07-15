@@ -44,7 +44,9 @@ You can disable structures with a factor of `0`.
 ```
 > Tip: you can dump all structure sets to a file in the right format by using the custom command `/dumpstructuresets`
 
-For now (v2.0), you have to restart the game for the config to be reloaded. This behavior may change in the future.
+For now (v2.0), you have to restart the game for the config to be reloaded. This behavior may change in the future.  
+
+> ⚠️ If you're using the mod "Alex's Caves", please set the structures from this mod to a factor of 1, in order to avoid experiencing issues. See [#47](https://github.com/MaxenceDC/sparsestructures/issues/47) for more info.
 
 ## 📜 Dependencies
 Fabric API (if you're using Fabric, or use the Quilt equivalent)
