@@ -5,7 +5,8 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
-    "FixLocateDistance"
+    "FixLocateDistance",
+    "PushSpreadLimit"
   ],
   "client": [],
   "server": [],

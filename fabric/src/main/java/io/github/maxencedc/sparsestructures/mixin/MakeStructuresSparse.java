@@ -34,16 +34,7 @@ public class MakeStructuresSparse {
 
         StructureSetsSet.addStructureSet(resourceKey.location().toString());
 
-        double factor = SparseStructuresCommon.config.spreadFactor();
-        for (CustomSpreadFactors s : SparseStructuresCommon.config.customSpreadFactors()) {
-            if (s == null) continue;
-            String structure_set = resourceKey.location().toString();
-            String structure = s.structure();
-            if (structure_set.equals(structure) || jsonObject.getAsJsonArray("structures").asList().stream().anyMatch(p -> p.getAsJsonObject().get("structure").getAsString().equals(structure))) {
-                factor = s.factor();
-                break;
-            }
-        }
+        double factor = SparseStructuresCommon.config.getSpreadFactor(resourceKey, jsonObject);
 
         if (factor == 0) {
             placement.addProperty("frequency", 0.0);
