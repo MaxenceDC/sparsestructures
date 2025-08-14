@@ -37,6 +37,7 @@ minecraft {
             workingDirectory file('runs/client')
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Client'
+            property 'eventbus.api.strictRuntimeChecks', 'true'
             mods {
                 modClientRun {
                     source sourceSets.main
@@ -48,6 +49,7 @@ minecraft {
             workingDirectory file('runs/server')
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Server'
+            property 'eventbus.api.strictRuntimeChecks', 'true'
             mods {
                 modServerRun {
                     source sourceSets.main
@@ -60,6 +62,7 @@ minecraft {
             ideaModule "${rootProject.name}.${project.name}.main"
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
             taskName 'Data'
+            property 'eventbus.api.strictRuntimeChecks', 'true'
             mods {
                 modDataRun {
                     source sourceSets.main
@@ -74,7 +77,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-
+    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0-beta.7'
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 
