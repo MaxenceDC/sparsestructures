@@ -1,0 +1,6 @@
+{
+  "command.sparsestructures.dump.dumping": "Dumping structure sets...",
+  "command.sparsestructures.dump.success": "Structure sets dumped to `%s`",
+  "command.sparsestructures.dump.failure": "Failed to dump structure sets, check the logs for errors",
+  "command.sparsestructures.dump.server": "(you can find the result in the server's files)"
+}

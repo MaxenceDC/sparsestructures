@@ -3,6 +3,7 @@ package io.github.maxencedc.sparsestructures.command;
 import com.mojang.brigadier.CommandDispatcher;
 import io.github.maxencedc.sparsestructures.Constants;
 import io.github.maxencedc.sparsestructures.StructureSetsSet;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 
@@ -24,24 +25,22 @@ public class DumpStructureSetsCommand {
             literal("dumpstructuresets")
                 .requires(cs -> cs.hasPermission(2))
                 .executes(context -> {
-                    context.getSource().sendSuccess(() -> Component.literal("Dumping structure set..."), false);
+                    context.getSource().sendSuccess(() -> Component.translatable("command.sparsestructures.dump.dumping"), false);
                     String fileName = new SimpleDateFormat("'structure_sets_dump_'yy_MM_dd_HH_mm'.txt'").format(new Date());
                     try {
                         dumpStructureSets(fileName);
                         context.getSource().sendSuccess(() -> {
                             boolean isDedicatedServer = context.getSource().getServer().isDedicatedServer();
-                            String fileLocation = Paths.get(Constants.MOD_ID, fileName).toString();
-
-                            String message = "Structure sets dumped to: `" + fileLocation + "`";
+                            Component underlinedFile = Component.literal(fileName).withStyle(ChatFormatting.UNDERLINE);
+                            String message = Component.translatable("command.sparsestructures.dump.success", underlinedFile).getString();
                             if (isDedicatedServer) {
-                                message += "\n(you can find the result in the server's files)";
+                                message += "\n" + Component.translatable("command.sparsestructures.dump.server").getString();
                             }
-
                             return Component.literal(message);
                         }, false);
                         return 1;
                     } catch (IOException e) {
-                        context.getSource().sendSuccess(() -> Component.literal("Failed to dump structure sets, check logs for error"), false);
+                        context.getSource().sendFailure(Component.translatable("command.sparsestructures.dump.failure"));
                         Constants.LOG.error("Failed to dump structure sets\n", e);
                         return 0;
                     }

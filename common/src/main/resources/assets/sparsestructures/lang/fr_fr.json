@@ -1,0 +1,6 @@
+{
+  "command.sparsestructures.dump.dumping": "Écriture des ensembles de structure en cours...",
+  "command.sparsestructures.dump.success": "Les ensembles de structure ont été écrits dans le fichier `%s`",
+  "command.sparsestructures.dump.failure": "Erreur lors de l'écriture des ensemble de structures, voir les logs pour plus de détails",
+  "command.sparsestructures.dump.server": "(vous trouverez le fichier du côté du serveur)"
+}
