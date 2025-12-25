@@ -5,15 +5,16 @@ import io.github.maxencedc.sparsestructures.Constants;
 import io.github.maxencedc.sparsestructures.StructureSetsSet;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static net.minecraft.commands.Commands.hasPermission;
 import static net.minecraft.commands.Commands.literal;
 
 
@@ -23,7 +24,7 @@ public class DumpStructureSetsCommand {
 
         dispatcher.register(
             literal("dumpstructuresets")
-                .requires(cs -> cs.hasPermission(2))
+                .requires(hasPermission(Commands.LEVEL_ADMINS))
                 .executes(context -> {
                     context.getSource().sendSuccess(() -> Component.translatable("command.sparsestructures.dump.dumping"), false);
                     String fileName = new SimpleDateFormat("'structure_sets_dump_'yy_MM_dd_HH_mm'.txt'").format(new Date());

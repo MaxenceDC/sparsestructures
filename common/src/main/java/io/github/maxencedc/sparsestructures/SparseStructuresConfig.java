@@ -26,7 +26,7 @@ public class SparseStructuresConfig {
         double factor = SparseStructuresCommon.config.spreadFactor();
         for (CustomSpreadFactors s : this.customSpreadFactors) {
             if (s == null) continue;
-            String structure_set = resourceKey.location().toString();
+            String structure_set = resourceKey.identifier().toString();
             String structure = s.structure();
             if (structure_set.equals(structure) || jsonObject.getAsJsonArray("structures").asList().stream().anyMatch(p -> p.getAsJsonObject().get("structure").getAsString().equals(structure))) {
                 factor = s.factor();

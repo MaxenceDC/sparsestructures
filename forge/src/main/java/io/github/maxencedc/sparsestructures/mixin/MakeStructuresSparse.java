@@ -25,14 +25,14 @@ public class MakeStructuresSparse {
 
     @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;decode(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "loadElementFromResource", locals = LocalCapture.CAPTURE_FAILHARD)
     private static <E> void loadElementFromResource(WritableRegistry<E> registry, Decoder<E> codec, RegistryOps<JsonElement> ops, ResourceKey<E> resourceKey, Resource resource, RegistrationInfo registrationInfo, CallbackInfo ci, @Local JsonElement jsonElement) {
-        String string = registry.key().location().getPath();
+        String string = registry.key().identifier().getPath();
         if (!string.equals("worldgen/structure_set")) return;
 
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         JsonObject placement = jsonObject.getAsJsonObject("placement");
         if (placement.get("type").getAsString().equals("minecraft:concentric_rings")) return;
 
-        StructureSetsSet.addStructureSet(resourceKey.location().toString());
+        StructureSetsSet.addStructureSet(resourceKey.identifier().toString());
 
         double factor = SparseStructuresCommon.config.getSpreadFactor(resourceKey, jsonObject);
 
@@ -55,7 +55,7 @@ public class MakeStructuresSparse {
         placement.addProperty("separation", separation);
 
         if (SparseStructuresCommon.config.idBasedSalt()) {
-            int salt = IdBasedSalt.getSalt(resourceKey.location().toString());
+            int salt = IdBasedSalt.getSalt(resourceKey.identifier().toString());
             placement.addProperty("salt", salt);
         }
     }
