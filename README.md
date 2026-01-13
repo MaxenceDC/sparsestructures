@@ -4,7 +4,7 @@ A simple and configurable mod that makes all (even datapacks and modded) structu
 > Notice: this does not alter the generation of ores/geodes or other features of this kind, and alters very slightly the terrain and trees (not enough to be an issue to most players).
 
 ## 💗 Sponsor
-[![But before, let's here a quick word from my sponsor!](https://www.bisecthosting.com/partners/custom-banners/6626410f-5005-4f5b-af8c-b17e1410af20.webp)](https://www.bisecthosting.com/MAX)
+[![But before, let's here a quick word from my sponsor!](https://www.bisecthosting.com/partners/custom-banners/6626410f-5005-4f5b-af8c-b17e1410af20.webp)](https://www.bisecthosting.com/MAX?r=GithubSparseStructures)
 
 ## ⁉️ Support
 
