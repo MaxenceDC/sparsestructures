@@ -3,38 +3,38 @@ package io.github.maxencedc.sparsestructures.mixin;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Decoder;
-import io.github.maxencedc.sparsestructures.CustomSpreadFactors;
 import io.github.maxencedc.sparsestructures.IdBasedSalt;
 import io.github.maxencedc.sparsestructures.SparseStructuresCommon;
 import io.github.maxencedc.sparsestructures.StructureSetsSet;
-import net.minecraft.core.RegistrationInfo;
-import net.minecraft.core.WritableRegistry;
-import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.Resource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(RegistryDataLoader.class)
-public class MakeStructuresSparse {
+import java.io.Reader;
 
-    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;decode(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "loadElementFromResource", locals = LocalCapture.CAPTURE_FAILHARD)
-    private static <E> void loadElementFromResource(WritableRegistry<E> registry, Decoder<E> codec, RegistryOps<JsonElement> ops, ResourceKey<E> resourceKey, Resource resource, RegistrationInfo registrationInfo, CallbackInfo ci, @Local JsonElement jsonElement) {
-        String string = registry.key().identifier().getPath();
+@Mixin(targets = "net.minecraft.resources.RegistryLoadTask$PendingRegistration")
+public class MakeStructuresSparseFabric {
+
+    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/DataResult;getOrThrow()Ljava/lang/Object;"), method = "loadFromResource")
+    private static <T> void loadFromResource(Decoder<T> elementDecoder, RegistryOps<JsonElement> ops, ResourceKey<T> elementKey, Resource thunk, CallbackInfoReturnable<Either<T, Exception>> cir, @Local(name = "json") JsonElement json) {
+        String string = elementKey.registryKey().identifier().getPath();
         if (!string.equals("worldgen/structure_set")) return;
 
-        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        JsonObject jsonObject = json.getAsJsonObject();
         JsonObject placement = jsonObject.getAsJsonObject("placement");
         if (placement.get("type").getAsString().equals("minecraft:concentric_rings")) return;
 
-        StructureSetsSet.addStructureSet(resourceKey.identifier().toString());
+        StructureSetsSet.addStructureSet(elementKey.identifier().toString());
 
-        double factor = SparseStructuresCommon.config.getSpreadFactor(resourceKey, jsonObject);
+        double factor = SparseStructuresCommon.config.getSpreadFactor(elementKey, jsonObject);
 
         if (factor == 0) {
             placement.addProperty("frequency", 0.0);
@@ -55,7 +55,7 @@ public class MakeStructuresSparse {
         placement.addProperty("separation", separation);
 
         if (SparseStructuresCommon.config.idBasedSalt()) {
-            int salt = IdBasedSalt.getSalt(resourceKey.identifier().toString());
+            int salt = IdBasedSalt.getSalt(elementKey.identifier().toString());
             placement.addProperty("salt", salt);
         }
     }

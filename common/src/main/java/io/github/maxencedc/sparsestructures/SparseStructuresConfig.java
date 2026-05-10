@@ -12,7 +12,7 @@ public class SparseStructuresConfig {
     private final boolean idBasedSalt;
     public boolean idBasedSalt() { return this.idBasedSalt; }
 
-    public List<CustomSpreadFactors> customSpreadFactors;
+    private final List<CustomSpreadFactors> customSpreadFactors;
     public List<CustomSpreadFactors> customSpreadFactors() { return this.customSpreadFactors; }
 
     public SparseStructuresConfig(double spreadFactor, boolean idBasedSalt, List<CustomSpreadFactors> customSpreadFactors)

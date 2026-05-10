@@ -4,7 +4,7 @@
   "package": "io.github.maxencedc.sparsestructures.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "MakeStructuresSparse"
+    "MakeStructuresSparseNF"
   ],
   "client": [],
   "server": [],
