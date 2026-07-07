@@ -23,7 +23,7 @@ import java.io.Reader;
 @Mixin(targets = "net.minecraft.resources.RegistryLoadTask$PendingRegistration")
 public class MakeStructuresSparseFabric {
 
-    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/DataResult;getOrThrow()Ljava/lang/Object;"), method = "loadFromResource")
+    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "loadFromResource")
     private static <T> void loadFromResource(Decoder<T> elementDecoder, RegistryOps<JsonElement> ops, ResourceKey<T> elementKey, Resource thunk, CallbackInfoReturnable<Either<T, Exception>> cir, @Local(name = "json") JsonElement json) {
         String string = elementKey.registryKey().identifier().getPath();
         if (!string.equals("worldgen/structure_set")) return;
