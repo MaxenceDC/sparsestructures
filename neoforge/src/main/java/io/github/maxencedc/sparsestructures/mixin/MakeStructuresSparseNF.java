@@ -39,7 +39,6 @@ public class MakeStructuresSparseNF {
 
         int spacing = (placement.get("spacing") == null) ? 1 : (int)(placement.get("spacing").getAsDouble() * factor);
         int separation = (placement.get("separation") == null) ? 1 : (int)(placement.get("separation").getAsDouble() * factor);
-        System.out.println("Spacing : " + spacing + " for " + elementKey.identifier());
 
         if (separation >= spacing) {
             spacing = Math.max(1, spacing);
